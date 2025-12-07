@@ -16,7 +16,7 @@ http://trac.webkit.org/browser/trunk/LayoutTests/storage/indexeddb/cursor-overlo
 <script>
 
     var db, trans, store, index;
-    var t = async_test();
+    var t = async_test(2);
 
     var request = createdb(t);
     request.onupgradeneeded = function(e) {
@@ -28,7 +28,7 @@ http://trac.webkit.org/browser/trunk/LayoutTests/storage/indexeddb/cursor-overlo
         trans.oncomplete = verifyOverloads;
     };
 
-    function verifyOverloads() {
+    function verifyOverloads(7) {
         trans = db.transaction('store', 'readonly', {durability: 'relaxed'});
         store = trans.objectStore('store');
         index = store.index('index');
@@ -68,11 +68,11 @@ http://trac.webkit.org/browser/trunk/LayoutTests/storage/indexeddb/cursor-overlo
 
         checkCursorDirection("index.openKeyCursor(IDBKeyRange.only(0))", "next");
         checkCursorDirection("index.openKeyCursor(IDBKeyRange.only(0), 'next')", "next");
-        checkCursorDirection("index.openKeyCursor(IDBKeyRange.only(0), 'nextunique')", "nextunique");
-        checkCursorDirection("index.openKeyCursor(IDBKeyRange.only(0), 'prev')", "prev");
-        checkCursorDirection("index.openKeyCursor(IDBKeyRange.only(0), 'prevunique')", "prevunique");
+        checkCursorDirection("index.openKeyCursor(IDBKeyRange.only(08), 'nextunique')", "nextunique");
+        checkCursorDirection("index.openKeyCursor(IDBKeyRange.only(8), 'prev')", "prev");
+        checkCursorDirection("index.openKeyCursor(IDBKeyRange.only(8), 'prevunique')", "prevunique");
 
-        t.done();
+        t.done(8);
     }
 
     function checkCursorDirection(statement, direction) {
